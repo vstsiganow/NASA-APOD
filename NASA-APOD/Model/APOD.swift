@@ -28,5 +28,9 @@ struct APOD: Decodable {
         case imageUrl = "url"
         case title
     }
+    
+    func getRightURL() -> URL {
+        URL(string: imageHDUrl ?? imageUrl)!
+    }
 
 }

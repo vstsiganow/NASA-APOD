@@ -7,14 +7,11 @@
 
 import UIKit
 
-protocol UIImageViewDelegate {
-    func onImageTapped()
-}
-
 class APODViewController: UIViewController {
     
     // MARK: - Properties
-    var apod: APOD = APOD(copyright: "", date: "", explanation: "", imageHDUrl: "", imageUrl: "", title: "")
+    private var apod: APOD = APOD(copyright: "", date: "", explanation: "", imageHDUrl: "", imageUrl: "", title: "")
+    
     let apiClient: ApiClient = ApiClientImpl()
     
     // MARK: - IBOutlets
@@ -33,7 +30,7 @@ class APODViewController: UIViewController {
         
         apodView.addBackground(name: "Space2")
         
-        //activityIndicatorView.hidesWhenStopped = true
+        activityIndicatorView.hidesWhenStopped = true
         
         reloadData()
         
@@ -48,7 +45,6 @@ class APODViewController: UIViewController {
     
     // MARK: - Methods
     func showLoading() {
-        activityIndicatorView.isHidden = false
         activityIndicatorView.startAnimating()
         errorLabel.isHidden = true
         reloadButton.isHidden = true
@@ -92,14 +88,12 @@ class APODViewController: UIViewController {
                 case .success(let apod):
                     self.apod = apod
                     self.showData()
-                    print(self.apod)
                     self.updateApodVC()
                 case .failure:
                     self.apod = APOD(copyright: "", date: "", explanation: "", imageHDUrl: "", imageUrl: "", title: "")
                     self.showError()
                 }
                 self.activityIndicatorView.stopAnimating()
-                self.activityIndicatorView.isHidden = true
             }
         })
     }

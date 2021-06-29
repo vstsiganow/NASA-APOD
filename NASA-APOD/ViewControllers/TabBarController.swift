@@ -6,52 +6,42 @@
 //
 
 import UIKit
+import SwiftyGif
 
 class TabBarController: UITabBarController {
     
-//    var apods: [APOD] = []
-//
-//    let mainQueue = DispatchQueue.main
-//    let globalDefault = DispatchQueue.global()
-//    let inactiveQueue = DispatchQueue(
-//        label: "ru.vtsyganov.inactiveQueue",
-//        attributes: [.concurrent, .initiallyInactive])
-//
+    let logoAnimationView = LogoAnimationView()
+    
+    //    var apods: [APOD] = []
+    //
+    //    let mainQueue = DispatchQueue.main
+    //    let globalDefault = DispatchQueue.global()
+    //    let inactiveQueue = DispatchQueue(
+    //        label: "ru.vtsyganov.inactiveQueue",
+    //        attributes: [.concurrent, .initiallyInactive])
+    //
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViewControllers()
+        view.addSubview(logoAnimationView)
+        logoAnimationView.pinEdgesToSuperView()
+        logoAnimationView.logoGifImageView.delegate = self
+        //setupViewControllers()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        logoAnimationView.logoGifImageView.startAnimatingGif()
+    }
+    
+    
     
     private func setupViewControllers() {
-        let apodVC = viewControllers?.first as! APODViewController
-        //let contactListVC = viewControllers?.last as! ContactListViewController
-        apodVC.navigationItem.title = "1"
+        //guard let viewControllers = viewControllers else { return }
     }
-//        inactiveQueue.async {
-//
-//
-//
-//            if self.apods.count > 0  {
-//                apodVC.apod = self.apods[0]
-//            } else {
-//                let now = Date()
-//
-//                let formatter = DateFormatter()
-//                formatter.dateStyle = .short
-//                formatter.timeStyle = .none
-//                formatter.dateFormat = "yyyy-MM-dd"
-//
-//                let currDate = formatter.string(from: now)
-//
-//                apodVC.apod = APOD(copyright: "", date: currDate, explanation: "", imageHDUrl: "", imageUrl: "", title: "")
-//            }
-//            print(self.apods.count)
-//            //apodVC.apodView.reloadInputViews()
-//        }
-//
-//        inactiveQueue.activate()
-//
-//    }
-    
-    
+}
+
+extension TabBarController: SwiftyGifDelegate {
+    func gifDidStop(sender: UIImageView) {
+        logoAnimationView.isHidden = true
+    }
 }
