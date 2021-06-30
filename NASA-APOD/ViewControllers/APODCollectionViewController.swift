@@ -10,7 +10,7 @@ import UIKit
 
 class APODCollectionViewController: UICollectionViewController {
     
-    // MARK: - Properties
+    // MARK: - Private Properties
     private var apods: [APOD] = []
     private let itemsPerRow: CGFloat = 2
     private let sectionInsets = UIEdgeInsets(
@@ -18,34 +18,35 @@ class APODCollectionViewController: UICollectionViewController {
         left: 20.0,
         bottom: 20.0,
         right: 20.0)
+    private let cellIdentifier = "ApodCell"
+    private let detailViewIdentifier = "showDetailsFromCollection"
     
-    
+    // MARK: - Properties
     let apiClient: ApiClient = ApiClientImpl()
     
-    private let reuseIdentifier = "ApodCell"
-    
+    // MARK: - Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
-        reloadData()
+        self.collectionView.dataSource = self
+        self.collectionView.delegate = self
+        loadData()
         //collectionView.addBackground(name: "Space4")
-        
     }
     
-    
-     // MARK: - Navigation
+    // MARK: - Navigation
     func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == reuseIdentifier {
+        if segue.identifier == detailViewIdentifier {
             let newViewController = segue.destination as! APODDetailsViewController
             let indexPath = sender as! NSIndexPath
-            let apod = apods[indexPath.row]
-            newViewController.apod = apod
+            let selectedRow = apods[indexPath.row]
+            print(selectedRow)
+            newViewController.apod = selectedRow
         }
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "showDetailsFromCollection", sender: self)
+        performSegue(withIdentifier: detailViewIdentifier, sender: self)
     }
-
     
     // MARK: - UICollectionViewDataSource
     
@@ -57,54 +58,51 @@ class APODCollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return apods.count
+        return self.apods.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! APODCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! APODCell
         
         if !apods.isEmpty {
             cell.configure(apods[indexPath.row])
         }
+        
         return cell
     }
     
     // MARK: - UICollectionViewDelegate
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-    
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
+//    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
+//        return true
+//    }
+//
+//    // Uncomment this method to specify if the specified item should be selected
+//    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+//        return true
+//    }
 }
-
+// MARK: - Extensions
 extension APODCollectionViewController {
-    func reloadData() {
-        //showLoading()
-        apiClient.getAPOD(completion: { result in
+    func loadData() {
+        apiClient.getData(link: DataManager.shared.link, completion: { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let apods):
-                    self.apods = apods
-                    //self.showData()
-                    print(self.apods)
-                case .failure:
+                    print("Start Alamofire request")
+                    self.apods = DataManager.shared.getSortedList(apods: apods)
+                case .failure(let error):
+                    print(error.localizedDescription)
                     self.apods = []
-                //self.showError()
                 }
                 print("Reload collection")
                 print(self.apods.count)
                 self.collectionView.reloadData()
-                //self.activityIndicatorView.stopAnimating()
             }
         })
     }
-    
 }
 
-// MARK: - CollectionLayout
+
 extension APODCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(
         _ collectionView: UICollectionView,

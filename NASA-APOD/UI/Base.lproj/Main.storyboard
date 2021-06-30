@@ -108,7 +108,6 @@
                                 <connections>
                                     <outlet property="apodCellImageView" destination="8pI-zQ-SgL" id="mXB-9U-rAe"/>
                                     <outlet property="dateLabel" destination="TSV-ia-GJx" id="hel-3R-1XE"/>
-                                    <segue destination="2WA-fa-25F" kind="show" id="9u0-IQ-YaL"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -119,6 +118,9 @@
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="" image="ClusterOfPlanets" id="sk8-Ue-ScX"/>
                     <navigationItem key="navigationItem" title="APOD Collection" largeTitleDisplayMode="always" id="3cT-hB-KV1"/>
+                    <connections>
+                        <segue destination="2WA-fa-25F" kind="show" identifier="showDetailsFromCollection" id="y57-nB-yul"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4F8-l4-o9o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -208,7 +210,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l0i-EJ-PW6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="YoA-P2-QSE">
                     <connections>
-                        <segue destination="2WA-fa-25F" kind="show" id="971-LB-jzf"/>
+                        <segue destination="2WA-fa-25F" kind="show" identifier="" id="971-LB-jzf"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -264,8 +266,8 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Explanation" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UXg-tc-y44">
-                                                <rect key="frame" x="148.66666666666666" y="404" width="116.99999999999997" height="26.666666666666686"/>
-                                                <fontDescription key="fontDescription" name="EuphemiaUCAS-Bold" family="Euphemia UCAS" pointSize="20"/>
+                                                <rect key="frame" x="154.33333333333334" y="399" width="105.33333333333334" height="24"/>
+                                                <fontDescription key="fontDescription" name="EuphemiaUCAS-Bold" family="Euphemia UCAS" pointSize="18"/>
                                                 <color key="textColor" red="0.95294117649999999" green="0.85098039219999999" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -287,7 +289,7 @@
                                                 </subviews>
                                             </stackView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="nz2-OG-wD9">
-                                                <rect key="frame" x="20" y="438" width="374" height="166"/>
+                                                <rect key="frame" x="20" y="428.00000000000006" width="374" height="178.66666666666669"/>
                                                 <accessibility key="accessibilityConfiguration">
                                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                                 </accessibility>
@@ -305,11 +307,11 @@
                                             <constraint firstItem="52w-ls-n3S" firstAttribute="leading" secondItem="4a2-tt-705" secondAttribute="leading" constant="20" id="CED-q7-tMz"/>
                                             <constraint firstItem="nz2-OG-wD9" firstAttribute="leading" secondItem="4a2-tt-705" secondAttribute="leading" constant="20" symbolic="YES" id="LUD-9F-P58"/>
                                             <constraint firstAttribute="trailing" secondItem="52w-ls-n3S" secondAttribute="trailing" constant="20" id="NBq-ZI-m0d"/>
-                                            <constraint firstItem="nz2-OG-wD9" firstAttribute="top" secondItem="UXg-tc-y44" secondAttribute="bottom" constant="7.3333333333333144" id="NQc-5d-tJc"/>
+                                            <constraint firstItem="nz2-OG-wD9" firstAttribute="top" secondItem="UXg-tc-y44" secondAttribute="bottom" constant="5" id="NQc-5d-tJc"/>
                                             <constraint firstAttribute="bottom" secondItem="fVG-eZ-fRr" secondAttribute="bottom" constant="10" id="Ocg-Ol-s3g"/>
                                             <constraint firstItem="UXg-tc-y44" firstAttribute="centerX" secondItem="4a2-tt-705" secondAttribute="centerX" id="VZb-ls-Nff"/>
-                                            <constraint firstItem="UXg-tc-y44" firstAttribute="top" secondItem="52w-ls-n3S" secondAttribute="bottom" constant="10" id="XV5-7n-y0i"/>
-                                            <constraint firstItem="fVG-eZ-fRr" firstAttribute="top" secondItem="nz2-OG-wD9" secondAttribute="bottom" constant="7.6666666666666288" id="ar4-A2-2U7"/>
+                                            <constraint firstItem="UXg-tc-y44" firstAttribute="top" secondItem="52w-ls-n3S" secondAttribute="bottom" constant="5" id="XV5-7n-y0i"/>
+                                            <constraint firstItem="fVG-eZ-fRr" firstAttribute="top" secondItem="nz2-OG-wD9" secondAttribute="bottom" constant="5" id="ar4-A2-2U7"/>
                                             <constraint firstItem="fVG-eZ-fRr" firstAttribute="leading" secondItem="4a2-tt-705" secondAttribute="leading" constant="20" id="kN0-xF-2ij"/>
                                         </constraints>
                                     </view>
@@ -352,7 +354,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="9u0-IQ-YaL"/>
+        <segue reference="y57-nB-yul"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="ClusterOfPlanets" width="26.666666030883789" height="26.666666030883789"/>

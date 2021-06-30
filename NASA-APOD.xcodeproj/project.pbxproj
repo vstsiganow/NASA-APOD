@@ -14,6 +14,7 @@
 		8463AF202689C72D00AD1862 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8463AF1F2689C72D00AD1862 /* UIView+Extension.swift */; };
 		8463AF242689F11900AD1862 /* APODCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8463AF232689F11900AD1862 /* APODCollectionViewController.swift */; };
 		8463AF262689F34D00AD1862 /* APODCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8463AF252689F34D00AD1862 /* APODCell.swift */; };
+		8463AF28268BABF000AD1862 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8463AF27268BABF000AD1862 /* DateFormatter+Extension.swift */; };
 		84672703267E2B72007F5CB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84672702267E2B72007F5CB1 /* AppDelegate.swift */; };
 		84672705267E2B72007F5CB1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84672704267E2B72007F5CB1 /* SceneDelegate.swift */; };
 		84672707267E2B72007F5CB1 /* APODViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84672706267E2B72007F5CB1 /* APODViewController.swift */; };
@@ -38,6 +39,7 @@
 		8463AF1F2689C72D00AD1862 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		8463AF232689F11900AD1862 /* APODCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APODCollectionViewController.swift; sourceTree = "<group>"; };
 		8463AF252689F34D00AD1862 /* APODCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APODCell.swift; sourceTree = "<group>"; };
+		8463AF27268BABF000AD1862 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		846726FF267E2B72007F5CB1 /* NASA-APOD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NASA-APOD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84672702267E2B72007F5CB1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84672704267E2B72007F5CB1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			children = (
 				8463AF1726888EAB00AD1862 /* UIImage+Extension.swift */,
 				8463AF1F2689C72D00AD1862 /* UIView+Extension.swift */,
+				8463AF27268BABF000AD1862 /* DateFormatter+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				8463AF1826888EAB00AD1862 /* UIImage+Extension.swift in Sources */,
 				84672723267EA670007F5CB1 /* DataManager.swift in Sources */,
 				8463AF262689F34D00AD1862 /* APODCell.swift in Sources */,
+				8463AF28268BABF000AD1862 /* DateFormatter+Extension.swift in Sources */,
 				84672703267E2B72007F5CB1 /* AppDelegate.swift in Sources */,
 				84672705267E2B72007F5CB1 /* SceneDelegate.swift in Sources */,
 				8467271F267EA314007F5CB1 /* ApiClient.swift in Sources */,

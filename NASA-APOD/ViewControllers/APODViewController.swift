@@ -10,7 +10,7 @@ import UIKit
 class APODViewController: UIViewController {
     
     // MARK: - Properties
-    private var apod: APOD = APOD(copyright: "", date: "", explanation: "", imageHDUrl: "", imageUrl: "", title: "")
+    var apod: APOD?
     
     let apiClient: ApiClient = ApiClientImpl()
     
@@ -39,8 +39,9 @@ class APODViewController: UIViewController {
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let detailsVC = segue.destination as? APODDetailsViewController else { return }
+        guard let apod = self.apod else { return }
         
-        detailsVC.apod = self.apod
+        detailsVC.apod = apod
     }
     
     // MARK: - Methods
@@ -70,6 +71,8 @@ class APODViewController: UIViewController {
     }
     
     func updateApodVC() {
+        guard let apod = self.apod else { return }
+        
         apodImageTitleLabel.text = apod.title
         
         if let hdUrl = apod.imageHDUrl {
@@ -82,20 +85,22 @@ class APODViewController: UIViewController {
     
     func reloadData() {
         showLoading()
-        apiClient.getLastAPOD(completion: { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let apod):
-                    self.apod = apod
-                    self.showData()
-                    self.updateApodVC()
-                case .failure:
-                    self.apod = APOD(copyright: "", date: "", explanation: "", imageHDUrl: "", imageUrl: "", title: "")
-                    self.showError()
+        apiClient.getData(
+            link: DataManager.shared.link
+            , completion: { result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let apods):
+                        self.apod = DataManager.shared.getSortedList(apods: apods)[0]
+                        print(apods)
+                        self.showData()
+                        self.updateApodVC()
+                    case .failure:
+                        self.showError()
+                    }
+                    self.activityIndicatorView.stopAnimating()
                 }
-                self.activityIndicatorView.stopAnimating()
-            }
-        })
+            })
     }
     
     func updateUImageViewSizes(imageView: UIImageView, image: UIImage?) {
