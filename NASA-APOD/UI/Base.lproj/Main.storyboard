@@ -147,6 +147,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Reload"/>
+                                <connections>
+                                    <action selector="reloadButtonTapped:" destination="VAh-BI-I2Y" eventType="touchUpInside" id="QTJ-6U-BFB"/>
+                                </connections>
                             </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="VLU-fp-THh">
                                 <rect key="frame" x="182" y="366.66666666666669" width="50" height="50"/>
@@ -354,7 +357,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="y57-nB-yul"/>
+        <segue reference="971-LB-jzf"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="ClusterOfPlanets" width="26.666666030883789" height="26.666666030883789"/>

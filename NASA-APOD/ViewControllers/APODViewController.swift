@@ -44,6 +44,12 @@ class APODViewController: UIViewController {
         detailsVC.apod = apod
     }
     
+    // MARK: - IBActions
+    @IBAction func reloadButtonTapped(_ sender: UIButton) {
+        reloadData()
+    }
+    
+    
     // MARK: - Methods
     func showLoading() {
         activityIndicatorView.startAnimating()
