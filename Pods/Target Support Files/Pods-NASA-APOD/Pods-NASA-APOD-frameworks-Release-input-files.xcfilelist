@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-NASA-APOD/Pods-NASA-APOD-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/SwiftyGif/SwiftyGif.framework
