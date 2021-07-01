@@ -34,19 +34,19 @@ class APODCollectionViewController: UICollectionViewController {
     }
     
     // MARK: - Navigation
-    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == detailViewIdentifier {
-            let newViewController = segue.destination as! APODDetailsViewController
-            let indexPath = sender as! NSIndexPath
-            let selectedRow = apods[indexPath.row]
-            print(selectedRow)
-            newViewController.apod = selectedRow
+            if let indexPaths = collectionView.indexPathsForSelectedItems{
+                let newViewController = segue.destination as! APODDetailsViewController
+                newViewController.apod = self.apods[indexPaths[0].row]
+                collectionView.deselectItem(at: indexPaths[0], animated: false)
+            }
         }
     }
     
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: detailViewIdentifier, sender: self)
-    }
+    //    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    //        performSegue(withIdentifier: detailViewIdentifier, sender: self)
+    //    }
     
     // MARK: - UICollectionViewDataSource
     
@@ -71,15 +71,6 @@ class APODCollectionViewController: UICollectionViewController {
         return cell
     }
     
-    // MARK: - UICollectionViewDelegate
-//    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-//        return true
-//    }
-//
-//    // Uncomment this method to specify if the specified item should be selected
-//    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-//        return true
-//    }
 }
 // MARK: - Extensions
 extension APODCollectionViewController {

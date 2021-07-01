@@ -108,6 +108,7 @@
                                 <connections>
                                     <outlet property="apodCellImageView" destination="8pI-zQ-SgL" id="mXB-9U-rAe"/>
                                     <outlet property="dateLabel" destination="TSV-ia-GJx" id="hel-3R-1XE"/>
+                                    <segue destination="2WA-fa-25F" kind="show" identifier="showDetailsFromCollection" id="eid-mv-NLs"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -118,9 +119,6 @@
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="" image="ClusterOfPlanets" id="sk8-Ue-ScX"/>
                     <navigationItem key="navigationItem" title="APOD Collection" largeTitleDisplayMode="always" id="3cT-hB-KV1"/>
-                    <connections>
-                        <segue destination="2WA-fa-25F" kind="show" identifier="showDetailsFromCollection" id="y57-nB-yul"/>
-                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4F8-l4-o9o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -134,6 +132,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="mT4-R3-6sG">
+                                <rect key="frame" x="188.66666666666666" y="373" width="37" height="37"/>
+                            </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Network error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sbk-Y6-BWf">
                                 <rect key="frame" x="151.33333333333334" y="333.66666666666669" width="111.33333333333334" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -151,13 +152,6 @@
                                     <action selector="reloadButtonTapped:" destination="VAh-BI-I2Y" eventType="touchUpInside" id="QTJ-6U-BFB"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="VLU-fp-THh">
-                                <rect key="frame" x="182" y="366.66666666666669" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="VLU-fp-THh" secondAttribute="height" multiplier="1:1" id="PuL-4h-Jm4"/>
-                                    <constraint firstAttribute="width" constant="50" id="ph3-dZ-T9y"/>
-                                </constraints>
-                            </activityIndicatorView>
                             <imageView hidden="YES" clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hA3-Mh-Xcf">
                                 <rect key="frame" x="20" y="137.66666666666663" width="374" height="315"/>
                                 <gestureRecognizers/>
@@ -184,15 +178,15 @@
                         <viewLayoutGuide key="safeArea" id="Uhi-vn-5c5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="VLU-fp-THh" firstAttribute="centerY" secondItem="Uhi-vn-5c5" secondAttribute="centerY" id="0UA-ol-qNQ"/>
                             <constraint firstItem="Uhi-vn-5c5" firstAttribute="trailing" secondItem="hA3-Mh-Xcf" secondAttribute="trailing" constant="20" id="1el-h6-buW"/>
-                            <constraint firstItem="VLU-fp-THh" firstAttribute="centerX" secondItem="Uhi-vn-5c5" secondAttribute="centerX" id="Aoz-dq-eZf"/>
+                            <constraint firstItem="mT4-R3-6sG" firstAttribute="centerY" secondItem="Uhi-vn-5c5" secondAttribute="centerY" id="99t-ro-fkU"/>
                             <constraint firstItem="3QM-V6-1wU" firstAttribute="centerX" secondItem="Uhi-vn-5c5" secondAttribute="centerX" id="Igq-QG-Xy3"/>
                             <constraint firstItem="hA3-Mh-Xcf" firstAttribute="leading" secondItem="Uhi-vn-5c5" secondAttribute="leading" constant="20" id="MC4-9d-Zi6"/>
                             <constraint firstItem="sbk-Y6-BWf" firstAttribute="centerX" secondItem="Uhi-vn-5c5" secondAttribute="centerX" id="QLV-6O-UX0"/>
                             <constraint firstItem="hA3-Mh-Xcf" firstAttribute="top" secondItem="vp1-th-jx5" secondAttribute="bottom" constant="10" id="Thq-yk-JXx"/>
                             <constraint firstItem="Uhi-vn-5c5" firstAttribute="bottom" secondItem="scR-fI-IXW" secondAttribute="bottom" id="da3-7M-fmx"/>
                             <constraint firstItem="vp1-th-jx5" firstAttribute="centerX" secondItem="Uhi-vn-5c5" secondAttribute="centerX" id="e92-Oy-Wpb"/>
+                            <constraint firstItem="mT4-R3-6sG" firstAttribute="centerX" secondItem="Uhi-vn-5c5" secondAttribute="centerX" id="ghR-xw-JtF"/>
                             <constraint firstItem="scR-fI-IXW" firstAttribute="centerX" secondItem="Uhi-vn-5c5" secondAttribute="centerX" id="hZN-Na-yS0"/>
                             <constraint firstItem="3QM-V6-1wU" firstAttribute="centerY" secondItem="Uhi-vn-5c5" secondAttribute="centerY" id="nV2-RG-fI6"/>
                             <constraint firstItem="vp1-th-jx5" firstAttribute="top" secondItem="Uhi-vn-5c5" secondAttribute="top" constant="10" id="wJ0-yy-Fvt"/>
@@ -202,7 +196,7 @@
                     <tabBarItem key="tabBarItem" title="" image="OnePlanet" id="Ttk-li-vR1"/>
                     <navigationItem key="navigationItem" title="Astronomy Picture of the Day" largeTitleDisplayMode="always" id="5e7-zO-tNn"/>
                     <connections>
-                        <outlet property="activityIndicatorView" destination="VLU-fp-THh" id="kQ8-MZ-jbz"/>
+                        <outlet property="activityIndicatorView" destination="mT4-R3-6sG" id="CUp-sw-d3y"/>
                         <outlet property="apodImageTitleLabel" destination="vp1-th-jx5" id="51W-WH-STA"/>
                         <outlet property="apodImageView" destination="hA3-Mh-Xcf" id="P17-0i-4SX"/>
                         <outlet property="apodView" destination="fTY-on-box" id="QwP-Re-oQE"/>
@@ -357,7 +351,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="971-LB-jzf"/>
+        <segue reference="eid-mv-NLs"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="ClusterOfPlanets" width="26.666666030883789" height="26.666666030883789"/>
